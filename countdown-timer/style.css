@@ -1,0 +1,20 @@
+/* used to style the HTML page */
+
+/*  Google Font - Source Sans Pro */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap');
+
+/* * (asterisk) is the unversal selector - selects all elements in the HTML doc */
+* {
+    box-sizing: border-box;
+}
+
+/* formating the body html tag */
+body {
+    /*adding background image*/
+    background-image: url("Images/unsplash-coding.jpg");
+    background-size: contain;
+    min-height: 100vh;
+    font-family: "Source Sans Pro", sans-serif; /* desired font + default font */
+    margin: 0;
+
+}
