@@ -72,3 +72,6 @@ the following apps were created:
 -   enter location
 -   get weather
 -   have some icons?
+
+
+Testing whether I got visual studio Git and GitHub set up properly
