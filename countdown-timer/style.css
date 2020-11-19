@@ -1,5 +1,4 @@
-/* used to style the HTML page */
-
+/* CSS docs are used to style the HTML page */
 /*  Google Font - Source Sans Pro */
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap');
 
@@ -13,13 +12,37 @@ body {
     /*adding background image*/
     background-image: url("Images/unsplash-coding.jpg");
     background-size: cover;
-    background-position: center center; /* not really needed in my case */
+    background-position: center center;
+    /* not really needed in my case */
     /* using flex so the items take up same amount of space on the display */
     /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: "Source Sans Pro", sans-serif; /* desired font + default font */
+    /* desired font + default font */
+    font-family: "Source Sans Pro", sans-serif;
+    /* setting font color */
+    color: white;
+    /* centers everything horizontally */
+    align-items: center;
+    /* justifies by centering it vertically */
+    justify-content: center;
     margin: 0;
+}
 
+h1 {
+    /* size is 4 times the normal browser size */
+    font-size: 3rem;
+}
+
+.countdown-container {
+    display: flex;
+    /* needs to be side by side */
+    flex-direction: row;
+}
+
+.wordbox {
+    /* massive readability improvement */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5vh;
 }
