@@ -26,13 +26,15 @@ body {
     /* centers everything horizontally */
     align-items: center;
     /* justifies by centering it vertically */
-    justify-content: center;
+    /* justify-content: center; */
     margin: 0;
 }
 
 h1 {
     /* size is 4 times the normal browser size */
     font-size: 3rem;
+    /* aligns teh software masters begins text */
+    text-align: center;
 }
 
 .countdown-container {
@@ -45,4 +47,22 @@ h1 {
     /* massive readability improvement */
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5vh;
+    margin-top: 8vh;
+}
+
+.countdown-text{
+    font-weight: bold;
+    font-size: 5rem;
+    /* essentially line spacing */
+    line-height: 1;
+    /* top margin of 0 and side margins of 2rem */
+    margin: 0 2rem;
+}
+
+.countdown-el{
+   /* we want to align the text in each div with class countdown-el */
+   font-weight: lighter;
+   text-align: center;
+   text-transform: uppercase;
+
 }
