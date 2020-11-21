@@ -41,6 +41,8 @@ h1 {
     display: flex;
     /* needs to be side by side */
     flex-direction: row;
+    /* adding mobile support - things will wrap to next line */
+    flex-wrap: wrap;
 }
 
 .wordbox {
