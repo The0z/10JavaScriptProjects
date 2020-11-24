@@ -11,7 +11,7 @@
     <!-- Viewport is the visible area of a webpage for the user https://www.w3schools.com/css/css_rwd_viewport.asp-->
     <meta name="viewport"
     content="width=device-width,
-        intial-scale=1.0">
+        initial-scale=1.0">
     <title>Quiz App</title>
     <!--  defines the relationship between the current document and an 
         external resource. href = location of linked document (URL) -->
@@ -26,7 +26,7 @@
     <div class="quiz-container">
         <!-- Contains the quiz question and the answer options-->
         <div class="quiz-question">
-            <h2>Question</h2>
+            <h2 id='question'>Question</h2>
             <!-- 
                 <ul> create bullet list, <li> create unordered list point
                 with input and label tags.
@@ -37,7 +37,7 @@
             <!-- 
                 radio buttons must all have the same names otherwise multiple can be selected 
             -->
-            <ul>
+            <ul id='radio-box'>
                 <li>
                     <input type="radio" id='a' name='answer'>
                     <label for="a">Answer a</label>
@@ -57,7 +57,7 @@
             </ul>
         </div>
         
-        <button>Submit</button>
+        <button id='submit'>Submit</button>
     </div>
 </body>
 </html>
