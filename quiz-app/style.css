@@ -10,6 +10,65 @@
 
 /* formating the body html tag */
 body {
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
     font-family: "Source Sans Pro", sans-serif; /* desired font + default font */
     margin: 0;
+    display: flex;
+    justify-content: center;
+    /* align items to center of cross axis */
+    align-items: center; 
+    /* this will allow the gradient to stretch the whole page */
+    min-height: 100vh; 
+}
+
+h2{
+    text-align: center;
+}
+
+/* styling the quiz container */
+.quiz-container{
+    background-color: #ffffff;
+    /* rounds the edges of the box */
+    border-radius: 5px; 
+    /* create a box shadow, h-offset, v-offset, blur optional, colour optional */
+    box-shadow: 0 0 10px 5px rgba(100, 100, 100, 0.15);
+    width: 600px;
+    /* to make it responsive -- will always be able to see the whole question rather than zoomed
+    in  */
+    max-width: 100%;
+}
+
+.quiz-question{ 
+    padding: 0;
+}
+
+/* editing bullet list style */
+ul{
+    /* remove bullet point from list */
+    list-style-type: none;
+    padding: 0 0 1rem 2rem;
+}
+
+/* editing the button style */
+button{
+    background-color: #4370E7;
+    /* sets color of font */
+    color: white; 
+    /* changes it to a finger pointing */
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 1rem; 
+    width: 100%;
+
+}
+
+/* determines what happens when you move the cursor over the button */
+button:hover{
+    background-color: #1f54e7;
+
 }
