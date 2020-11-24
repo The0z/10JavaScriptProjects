@@ -41,4 +41,81 @@ const quizData = [
         correct: 'e'
     }
 
-]
+];
+
+// Keeps track of Quiz Question We are On
+let quizQ = 0;
+// total length of quiz;
+let quizLength = quizData.length;
+
+
+// Load first question when page is first started
+window.onload = updateQuestion();
+// Call update question when submit button is clicked.
+document.getElementById('submit').onclick = function(){
+    updateQuestion();
+}
+
+
+/*
+* When Submit button is hit or initial load we want to: Load up a question 
+*/
+function updateQuestion(){
+    let nextQuestion = '';
+    let correctAns = '';
+    deleteList('radio-box');
+    let len = Object.keys(quizData[quizQ]).length;
+
+    for(var key in quizData[quizQ]){
+        if(key == 'question'){
+            nextQuestion = quizData[quizQ][key];
+            var question = document.getElementById('question');
+            question.innerHTML = nextQuestion;
+        }
+        else if(key == 'correct'){
+            nextQuestion = quizData[quizQ][key];
+        }
+        else{
+            const id = key;
+            const val = quizData[quizQ][key];
+            newQuestion(id, val, 'answer');   
+        }
+    }
+    quizQ++;
+}
+
+/*
+* Loads the new question radio buttons (the answer choices)
+* takes in id of radio and value of radio (used for label as well)
+*/
+function newQuestion(id, val, name){
+    var li = document.createElement('li');
+    var radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.id = id;
+    radio.value = val;
+    radio.name = name;
+    radio.classList.add('myradio');
+
+    var label = document.createElement('label');
+    label.htmlFor = id;
+
+    var description = document.createTextNode(val);
+    label.appendChild(description);
+
+    var newline = document.createElement('br');
+
+    var container = document.getElementById('radio-box');
+    container.appendChild(li);
+    li.appendChild(radio);
+    li.appendChild(label);
+}
+
+// Deletes the radio buttons that are no longer needed
+function deleteList(pId){
+    var list = document.getElementById(pId);
+    //While a child element still remains
+    while(list.firstChild){
+        list.removeChild(list.firstChild);
+    }
+}
