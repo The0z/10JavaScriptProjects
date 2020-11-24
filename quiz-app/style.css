@@ -22,47 +22,57 @@ body {
     min-height: 100vh; 
 }
 
-h2{
-    text-align: center;
-}
-
 /* styling the quiz container */
 .quiz-container{
     background-color: #ffffff;
     /* rounds the edges of the box */
-    border-radius: 5px; 
+    border-radius: 7px; 
     /* create a box shadow, h-offset, v-offset, blur optional, colour optional */
     box-shadow: 0 0 10px 5px rgba(100, 100, 100, 0.15);
-    width: 600px;
+    width: 500px;
     /* to make it responsive -- will always be able to see the whole question rather than zoomed
     in  */
     max-width: 100%;
+    /* Removes the sharp corners created by the button */
+    overflow: hidden;
 }
 
 .quiz-question{ 
+    padding: 2rem;
+}
+
+h2{
     padding: 0;
+    margin: 0;
 }
 
 /* editing bullet list style */
 ul{
     /* remove bullet point from list */
     list-style-type: none;
-    padding: 0 0 1rem 2rem;
+    padding: 0;
+    max-height: 500px;
 }
+
+ul li{
+    padding: 0.5rem 0;
+    color: rgb(36, 77, 211)
+}
+
 
 /* editing the button style */
 button{
     background-color: #4370E7;
+    /* remove border so it appears rounded at the bottom */
+    border: none;
     /* sets color of font */
     color: white; 
     /* changes it to a finger pointing */
     cursor: pointer;
     display: block;
-    text-align: center;
-    border-radius: 5px;
     font-family: inherit;
     font-size: 0.75rem;
-    padding: 1rem; 
+    padding: 1.1rem; 
     width: 100%;
 
 }
