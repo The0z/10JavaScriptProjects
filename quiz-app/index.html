@@ -16,6 +16,7 @@
     <!--  defines the relationship between the current document and an 
         external resource. href = location of linked document (URL) -->
     <link rel="stylesheet" href='style.css'>
+    <link rel="stylesheet" href='snackbarStyle.css'>
     <!-- Same as above, except used to embed a client-side script (JavaScript). -->
     <!-- defer load script adter page has finished parsing -->
     <script src="script.js" defer></script>
@@ -57,8 +58,10 @@
             </ul>
         </div>
         
-        <button id='submit'>Submit</button>
+        <button id='submitBtn'>Submit</button>
     </div>
+    <!-- Added snackbar from https://www.w3schools.com/howto/howto_js_snackbar.asp -->
+    <div id='snackbar'>Please Select an Answer then Hit SUBMIT Again</div>
 </body>
 </html>
 
