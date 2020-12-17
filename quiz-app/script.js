@@ -46,39 +46,94 @@ const quizData = [
 // Keeps track of Quiz Question We are On
 let quizQ = 0;
 // total length of quiz;
-let quizLength = quizData.length;
-
+const quizLength = quizData.length;
+const radioContainerName = 'radio-box';
+const radioName = 'questionChoices';
 
 // Load first question when page is first started
-window.onload = updateQuestion();
+window.onload = function(){
+    updateQuestion(radioName, radioContainerName);
+};
+const submitBtn = document.getElementById('submitBtn');
+
+
 // Call update question when submit button is clicked.
-document.getElementById('submit').onclick = function(){
-    updateQuestion();
+// Alternative is onclick.
+submitBtn.addEventListener("click", function(){
+    
+    //Check if user selected one answer first
+    const isAnsSel = document.querySelector('input[name="' + radioName + '"]:checked');
+    
+    if(isAnsSel === undefined || isAnsSel == null || isAnsSel.length == 0){
+           snackBar();
+    }
+    else{
+        // if there is more quiz questions, check current Q answer then update question
+        // Otherwise if on last answer only check answer and update to score page
+        if(quizQ < quizLength){
+            checkAnswer(radioName);
+            updateQuestion(radioName, radioContainerName);    
+        }
+        else if (quizQ == quizLength){
+            checkAnswer(radioName);
+            //insert score function here!
+        }
+    }
+});
+
+/*
+* Shows snack bar for 3 seconds then fades out
+*/
+function snackBar(){
+    var snackBarEl = document.getElementById("snackbar");
+    
+    // add show class to div element to make it appear
+    snackBarEl.className = "show";
+    //After 3.5 seconds make it disappear
+    setTimeout(function(){snackBarEl.className = snackBarEl.className.replace("show", "")}, 3000);
+
 }
 
 
+/* 
+* Checks whether the user entered the correct answer 
+*/
+function checkAnswer(radioName){
+   let correctAns = quizData[quizQ-1]['correct'];
+   // Returns an array of all the choses
+   let selectedAns = document.querySelector('input[name="' + radioName + '"]:checked').id;
+
+    if(correctAns === selectedAns){
+        console.log("Correct");
+    }
+    else{
+        console.log("incorrect")
+    }
+
+     
+   
+}
+
 /*
 * When Submit button is hit or initial load we want to: Load up a question 
+* Takes in the name that you want to name the radio buttons.
 */
-function updateQuestion(){
+function updateQuestion(radioName, radioContainerName){
     let nextQuestion = '';
-    let correctAns = '';
     deleteList('radio-box');
     let len = Object.keys(quizData[quizQ]).length;
 
     for(var key in quizData[quizQ]){
+        // check if it is the question header first else, if not correct answer create radio buttin.
         if(key == 'question'){
             nextQuestion = quizData[quizQ][key];
             var question = document.getElementById('question');
             question.innerHTML = nextQuestion;
         }
-        else if(key == 'correct'){
-            nextQuestion = quizData[quizQ][key];
-        }
-        else{
+        else if(key != 'correct'){
             const id = key;
             const val = quizData[quizQ][key];
-            newQuestion(id, val, 'answer');   
+            newRadioChoice(id, val, radioName, radioContainerName);   
         }
     }
     quizQ++;
@@ -87,8 +142,9 @@ function updateQuestion(){
 /*
 * Loads the new question radio buttons (the answer choices)
 * takes in id of radio and value of radio (used for label as well)
+* Takes in container_name that you want the radio container to be named
 */
-function newQuestion(id, val, name){
+function newRadioChoice(id, val, name, container_name){
     var li = document.createElement('li');
     var radio = document.createElement('input');
     radio.type = 'radio';
@@ -105,7 +161,7 @@ function newQuestion(id, val, name){
 
     var newline = document.createElement('br');
 
-    var container = document.getElementById('radio-box');
+    var container = document.getElementById(container_name);
     container.appendChild(li);
     li.appendChild(radio);
     li.appendChild(label);
