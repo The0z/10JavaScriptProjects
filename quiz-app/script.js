@@ -44,7 +44,9 @@ const quizData = [
 ];
 
 // Keeps track of Quiz Question We are On
-let quizQ = 0;
+let quizQCount = 0;
+let results = [];
+let score = 0;
 // total length of quiz;
 const quizLength = quizData.length;
 const radioContainerName = 'radio-box';
@@ -61,7 +63,7 @@ const submitBtn = document.getElementById('submitBtn');
 // Alternative is onclick.
 submitBtn.addEventListener("click", function(){
     
-    //Check if user selected one answer first
+    //Check if user selected an answer first
     const isAnsSel = document.querySelector('input[name="' + radioName + '"]:checked');
     
     if(isAnsSel === undefined || isAnsSel == null || isAnsSel.length == 0){
@@ -70,13 +72,15 @@ submitBtn.addEventListener("click", function(){
     else{
         // if there is more quiz questions, check current Q answer then update question
         // Otherwise if on last answer only check answer and update to score page
-        if(quizQ < quizLength){
+        if(quizQCount < quizLength){
             checkAnswer(radioName);
             updateQuestion(radioName, radioContainerName);    
         }
-        else if (quizQ == quizLength){
+        else if (quizQCount == quizLength){
             checkAnswer(radioName);
-            //insert score function here!
+            quizQCount++;
+            deleteList(radioContainerName);
+            printScore();
         }
     }
 });
@@ -99,20 +103,47 @@ function snackBar(){
 * Checks whether the user entered the correct answer 
 */
 function checkAnswer(radioName){
-   let correctAns = quizData[quizQ-1]['correct'];
+   let correctAns = quizData[quizQCount-1]['correct'];
    // Returns an array of all the choses
    let selectedAns = document.querySelector('input[name="' + radioName + '"]:checked').id;
 
     if(correctAns === selectedAns){
-        console.log("Correct");
+        resultsCounter('Correct');
+        score++;
     }
     else{
-        console.log("incorrect")
+        resultsCounter('Incorrect');
+    } 
+}
+
+
+// Simple function used to populate a results array.
+function resultsCounter(msgStr){
+    results.push(msgStr);
+}
+
+/*
+* Prints out your results to the HTML page
+*/
+function printScore(){
+    document.getElementById('submitBtn').remove();
+    let question = document.getElementById('question');
+    question.style.textAlign = 'center';
+    resultParagraph = 'Results: <br />'
+
+    let p = document.createElement('p');
+
+
+    for(let i = 0; i < results.length; i++){
+        resultParagraph += 'Question ' + String(i+1) + ': ' + results[i] + ' <br />';
     }
 
-     
-   
+    resultParagraph += 'Score is: ' + String((score/quizLength)*100) + "%";
+
+    question.innerHTML = resultParagraph;
+    
 }
+
 
 /*
 * When Submit button is hit or initial load we want to: Load up a question 
@@ -121,22 +152,22 @@ function checkAnswer(radioName){
 function updateQuestion(radioName, radioContainerName){
     let nextQuestion = '';
     deleteList('radio-box');
-    let len = Object.keys(quizData[quizQ]).length;
+    let len = Object.keys(quizData[quizQCount]).length;
 
-    for(var key in quizData[quizQ]){
+    for(var key in quizData[quizQCount]){
         // check if it is the question header first else, if not correct answer create radio buttin.
         if(key == 'question'){
-            nextQuestion = quizData[quizQ][key];
-            var question = document.getElementById('question');
+            nextQuestion = quizData[quizQCount][key];
+            let question = document.getElementById('question');
             question.innerHTML = nextQuestion;
         }
         else if(key != 'correct'){
             const id = key;
-            const val = quizData[quizQ][key];
+            const val = quizData[quizQCount][key];
             newRadioChoice(id, val, radioName, radioContainerName);   
         }
     }
-    quizQ++;
+    quizQCount++;
 }
 
 /*
